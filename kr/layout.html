@@ -4,13 +4,34 @@
   {% if theme_touch_icon %}
     <link rel="apple-touch-icon" href="{{ pathto('_static/' ~ theme_touch_icon, 1) }}" />
   {% endif %}
+
   <link media="only screen and (max-device-width: 480px)" href="{{
     pathto('_static/small_flask.css', 1) }}" type= "text/css" rel="stylesheet" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+		<meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+	{% if google_analytics_id%}
+   <script type="text/javascript">
+		   var _gaq = _gaq || [];
+			 _gaq.push(['_setAccount', '{{google_analytics_id}}']);
+				   _gaq.push(['_trackPageview']);
+	</script>
+   {%endif%}
 {% endblock %}
 {%- block relbar2 %}{% endblock %}
 {%- block footer %}
     <div class="footer">
       &copy; Copyright {{ copyright }}.
-    </div>
+			</divi>
+
+    {% if google_analytics_id%}
+		<script type="text/javascript">
+			  (function() {
+				    var ga = document.createElement('script');
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						ga.setAttribute('async', 'true');
+				    document.documentElement.firstChild.appendChild(ga);
+							})();
+	  </script>
+   {%endif%}
+
 {%- endblock %}
